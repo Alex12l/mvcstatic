@@ -65,16 +65,15 @@ return $this->pdo->lastInsertId();
 
 }
 
-public function eliminar(){
+public function eliminar($id){
   try{
     $sql="DELETE FROM productos WHERE id=?";
 
 $consulta = $this->pdo->prepare($sql);
-
-$consulta->execute();
+return $consulta->execute([$id]);
   }
   catch(Exception $e){
-    return -1;
+    return false;
   }
 }
 public function actualizar(){ 
