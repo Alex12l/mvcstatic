@@ -22,3 +22,8 @@ INSERT INTO productos
 ('Accesorio', 'Logitech', 'Teclado USB Negro', 12, '2025-11-01', 20),
 ('Consumible', 'Canon', 'Pixma 190 Yellow', 6, '2025-09-10', 5);
 SELECT*FROM productos;
+
+SELECT 
+id,classificacion, marca, descripcion, garantia, ingreso, cantidad
+ FROM productos
+ ORDER BY id DESC;

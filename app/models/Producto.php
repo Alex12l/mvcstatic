@@ -11,7 +11,11 @@ public function __construct(){
 public function listar(){
 try{
   // 1 Crear mi consulta sql
-$sql = "SELECT * FROM productos";
+$sql = "
+SELECT 
+id,classificacion, marca, descripcion, garantia, ingreso, cantidad
+ FROM productos
+ ORDER BY id DESC";
 //2 Enviar la consulta preparada a PDO
 $consulta = $this->pdo->prepare($sql);
 //3 Ejecutar la consulta}
@@ -26,11 +30,52 @@ catch(Exception $e){
   return [];
 }
 }
-public function refistrar(){
+
+public function registrar($classificacion, $marca, $descripcion, $garantia, $ingreso, $cantidad):int{
+  try{
+    //los comodines, poseen indices (arreglos)
+    $sql="
+    INSERT INTO productos 
+    (classificacion, marca, descripcion, garantia, ingreso, cantidad) VALUES
+     (?,?,?,?,?,?)
+     ";
+//2 Enviar la consulta preparada a PDO
+$consulta = $this->pdo->prepare($sql);
+//3 La consulta lleva comodines, pasamos los datos en execute()
+$consulta->execute(
+array(
+  $classificacion,
+  $marca,
+  $descripcion,
+  $garantia,
+  $ingreso,
+  $cantidad
+)
+
+);
+//retornar la Primary Key generada
+return $this->pdo->lastInsertId();
+
+
+  }
+  catch(Exception $e){
+    return -1; 
+
+  }
 
 }
-public function eliminar(){
 
+public function eliminar(){
+  try{
+    $sql="DELETE FROM productos WHERE id=?";
+
+$consulta = $this->pdo->prepare($sql);
+
+$consulta->execute();
+  }
+  catch(Exception $e){
+    return -1;
+  }
 }
 public function actualizar(){ 
 
