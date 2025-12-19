@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,6 +10,8 @@
 <body>
   <div class="container">
     <h1>Lista de productos</h1>
+    <a href="#" class = "btn btn-sm btn-primary">Registrar</a>
+    <hr>
     <table class="table table-striped">
       <thead>
         <tr></tr>
@@ -28,6 +31,12 @@
       </tbody>
     </table>
   </div>
+  <script>
+    //Verificar que toda la pafgina este cargada
+    document.addEventListener("DOMContentLoaded", function(){
+      console.log("Pagina lista");
+    })
+  </script>
 
 </body>
 </html>
