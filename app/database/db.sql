@@ -14,7 +14,11 @@ CREATE TABLE productos
   created       DATETIME      NOT NULL DEFAULT NOW() COMMENT 'Campo calculado Fecha y Hora',
   updated       DATETIME      NOT NULL COMMENT 'se agrega al detectar un cambio'
 
-)ENGINE = INNODB;
+)ENGINE = INNODB; /*  INNODB (relacional -join), MYISAM (veloz no relacional)*/
+
+/* En cada insert into 1. Valida, 2 Verifica, 3 Calcula, 4 Escribe, 5 Actualiza
+
+Se usa un solo insert into para no sobrecargar el equipo */
 
 INSERT INTO productos 
 (classificacion, marca, descripcion, garantia, ingreso, cantidad) VALUES
@@ -23,7 +27,25 @@ INSERT INTO productos
 ('Consumible', 'Canon', 'Pixma 190 Yellow', 6, '2025-09-10', 5);
 SELECT*FROM productos;
 
+/* Ordena los datos de forma desendente, de los ultimos registros ingresados
+a los mas antiguos */
 SELECT 
 id,classificacion, marca, descripcion, garantia, ingreso, cantidad
  FROM productos
  ORDER BY id DESC;
+
+
+
+ CREATE TABLE proveedores 
+ (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  razonsocial   VARCHAR(150)  NOT NULL,
+  ruc           CHAR (11)     NULL,
+  telefono      CHAR(9)       NULL,
+  origen        ENUM('Nacional', 'Extranjero'),
+  contacto      VARCHAR(50)   NOT NULL,
+  confianza     TINYINT NOT   NULL DEFAULT 1,
+  created       DATETIME      NOT NULL DEFAULT NOW() COMMENT 'Campo calculado Fecha y Hora',
+  updated       DATETIME      NOT NULL COMMENT 'se agrega al detectar un cambio'
+
+ )

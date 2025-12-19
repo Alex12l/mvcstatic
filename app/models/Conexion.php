@@ -13,7 +13,7 @@ class Conexion{
   public function getConexion(){
     //manejador de excepciones/errores
     //try (intentar)
-    //ctach (accidente, error)
+    //catch (accidente, error)
     try{
       //La clase PDO Permite conectarte a diferentes motores de BD,
       //Requiere una configuracion minima y es facil de utilizar
